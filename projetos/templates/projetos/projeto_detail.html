@@ -1,0 +1,31 @@
+<h1>{{ projeto.nome }}</h1>
+<p>{{ projeto.descricao }}</p>
+
+<h2>Tarefas</h2>
+<ul>
+  {% for tarefa in projeto.tarefas.all %}
+    <li>
+      {{ tarefa.titulo }} - 
+      {% if tarefa.concluida %}
+        ✅ Concluída
+      {% else %}
+        ⏳ Pendente
+      {% endif %}
+      |
+      <a href="{% url 'tarefa_edit' projeto.pk tarefa.pk %}">Editar</a>
+      <a href="{% url 'tarefa_delete' projeto.pk tarefa.pk %}">Excluir</a>
+
+      {% if not tarefa.concluida %}
+        <form action="{% url 'tarefa_finalizar' projeto.pk tarefa.pk %}" method="POST" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit">Finalizar</button>
+        </form>
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>Sem tarefas ainda.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'tarefa_create' projeto.pk %}">➕ Adicionar nova tarefa</a><br>
+<a href="{% url 'projeto_list' %}">⬅️ Voltar para lista de projetos</a>

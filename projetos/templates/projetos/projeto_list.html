@@ -1,0 +1,18 @@
+<h1>Projetos</h1>
+
+<ul>
+  {% for projeto in projeto_list %}
+    <li>
+      <strong>{{ projeto.nome }}</strong> - {{ projeto.status }}
+
+      <a href="{% url 'projeto_detail' projeto.pk %}">Detalhes</a>
+      <a href="{% url 'projeto_edit' projeto.pk %}">Editar</a>
+      <a href="{% url 'projeto_delete' projeto.pk %}">Excluir</a>
+      <a href="{% url 'tarefa_create' projeto_id=projeto.pk %}">Nova Tarefa</a>
+    </li>
+  {% empty %}
+    <li>Nenhum projeto cadastrado ainda.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'projeto_create' %}">Novo Projeto</a>

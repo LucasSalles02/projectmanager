@@ -1,0 +1,7 @@
+<h1>Excluir Projeto</h1>
+<p>Tem certeza que deseja excluir o projeto "{{ object.nome }}"?</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Confirmar</button>
+  <a href="{% url 'projeto_list' %}">Cancelar</a>
+</form>
