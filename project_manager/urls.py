@@ -28,10 +28,10 @@ urlpatterns = [
     path('create/', ProjetoCreateView.as_view(), name='projeto_create'),
     path('edit/<int:pk>/', ProjetoUpdateView.as_view(), name='projeto_edit'),
     path('delete/<int:pk>/', ProjetoDeleteView.as_view(), name='projeto_delete'),
-    path('<int:pk>/', ProjetoDetailView.as_view(), name='projeto_detail'),  # <- Adicionado
+    path('<int:pk>/', ProjetoDetailView.as_view(), name='projeto_detail'),  
     path('<int:projeto_id>/tarefas/nova/', TarefaCreateView.as_view(), name='tarefa_create'),
-path('<int:projeto_id>/tarefas/<int:pk>/editar/', TarefaUpdateView.as_view(), name='tarefa_edit'),
-path('<int:projeto_id>/tarefas/<int:pk>/excluir/', TarefaDeleteView.as_view(), name='tarefa_delete'),
-path('<int:projeto_id>/tarefas/<int:pk>/finalizar/', TarefaFinalizarView.as_view(), name='tarefa_finalizar'),
+    path('<int:projeto_id>/tarefas/<int:pk>/editar/', TarefaUpdateView.as_view(), name='tarefa_edit'),
+    path('<int:projeto_id>/tarefas/<int:pk>/excluir/', TarefaDeleteView.as_view(), name='tarefa_delete'),
+    path('<int:projeto_id>/tarefas/<int:pk>/finalizar/', TarefaFinalizarView.as_view(), name='tarefa_finalizar'),
 ]
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, View
 from django.urls import reverse_lazy
 from .models import Projeto, Tarefa
@@ -54,8 +54,8 @@ class TarefaDeleteView(DeleteView):
         return reverse_lazy('projeto_detail', kwargs={'pk': self.object.projeto.id})
 
 class TarefaFinalizarView(View):
-    def post(self, request, pk):
-        tarefa = Tarefa.objects.get(pk=pk)
+    def post(self, request, projeto_id, pk):
+        tarefa = get_object_or_404(Tarefa, pk=pk, projeto_id=projeto_id)
         tarefa.concluida = True
         tarefa.save()
-        return redirect('projeto_detail', pk=tarefa.projeto.id)
+        return redirect('projeto_detail', pk=tarefa.projeto_id)

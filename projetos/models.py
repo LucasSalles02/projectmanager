@@ -5,6 +5,7 @@ class Projeto(models.Model):
         ('andamento', 'Em andamento'),
         ('concluido', 'Concluído'),
         ('pausado', 'Pausado'),
+        ('pendente', 'Pendente')
     ]
 
     nome = models.CharField(max_length=100)
