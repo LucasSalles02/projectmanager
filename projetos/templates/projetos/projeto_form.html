@@ -1,7 +1,97 @@
-<h1>Novo Projeto</h1>
-<form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Salvar</button>
-</form>
-<a href="{% url 'projeto_list' %}">Voltar</a>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Projeto</title>
+  <style>
+
+    body {
+      background: #f5f5f5;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form .field {
+      margin-bottom: 20px;
+    }
+
+    form input,
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #0077be;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #005f9e;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #337ab7;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #23527c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Novo Projeto</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="field">
+        {{ form }}
+      </div>
+      <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'projeto_list' %}">Voltar</a>
+  </div>
+</body>
+</html>

@@ -1,18 +1,48 @@
-<h1>Projetos</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Projetos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-3xl bg-white p-6 rounded-2xl shadow-md">
+    <h1 class="text-3xl font-semibold text-blue-700 mb-6 text-center">Projetos</h1>
 
-<ul>
-  {% for projeto in projeto_list %}
-    <li>
-      <strong>{{ projeto.nome }}</strong> - {{ projeto.status }}
+    {% if projeto_list %}
+      <ul class="space-y-4">
+        {% for projeto in projeto_list %}
+          <li class="border rounded-lg p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <strong class="text-lg text-gray-800">{{ projeto.nome }}</strong>
+                <span class="ml-2 text-sm text-gray-500">({{ projeto.status }})</span>
+              </div>
+              <div class="mt-3 md:mt-0 space-x-2">
+                <a href="{% url 'projeto_detail' projeto.pk %}" class="text-blue-600 hover:underline">Detalhes</a>
+                <a href="{% url 'projeto_edit' projeto.pk %}" class="text-yellow-600 hover:underline">Editar</a>
+                <a href="{% url 'projeto_delete' projeto.pk %}" class="text-red-600 hover:underline">Excluir</a>
+                <a href="{% url 'tarefa_create' projeto_id=projeto.pk %}" class="text-green-600 hover:underline">Nova Tarefa</a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-gray-500">Nenhum projeto cadastrado ainda.</p>
+    {% endif %}
 
-      <a href="{% url 'projeto_detail' projeto.pk %}">Detalhes</a>
-      <a href="{% url 'projeto_edit' projeto.pk %}">Editar</a>
-      <a href="{% url 'projeto_delete' projeto.pk %}">Excluir</a>
-      <a href="{% url 'tarefa_create' projeto_id=projeto.pk %}">Nova Tarefa</a>
-    </li>
-  {% empty %}
-    <li>Nenhum projeto cadastrado ainda.</li>
-  {% endfor %}
-</ul>
-
-<a href="{% url 'projeto_create' %}">Novo Projeto</a>
+    <div class="mt-6">
+      <a href="{% url 'projeto_create' %}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        Novo Projeto
+      </a>
+    </div>
+  </div>
+</body>
+</html>
